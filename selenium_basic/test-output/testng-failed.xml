@@ -3,11 +3,13 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="learningAtTekPyramid.GetProductInfoTest">
+      <class name="selenium4.JavascriptExecutorUsage">
         <methods>
-          <include name="getProductInfoTest"/>
+          <include name="tearDown"/>
+          <include name="setUp"/>
+          <include name="writeAScriptToScrollWebpageByUsingJSE"/>
         </methods>
-      </class> <!-- learningAtTekPyramid.GetProductInfoTest -->
+      </class> <!-- selenium4.JavascriptExecutorUsage -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

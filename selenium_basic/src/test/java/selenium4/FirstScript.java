@@ -8,12 +8,13 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import java.time.Duration;
 
 public class FirstScript {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
+    	
         WebDriver driver = new ChromeDriver();
 
         driver.get("https://www.selenium.dev/selenium/web/web-form.html");
 
-        driver.getTitle();
+        System.out.println("Page Title - "+driver.getTitle());
 
         driver.manage().timeouts().implicitlyWait(Duration.ofMillis(500));
 
@@ -22,10 +23,12 @@ public class FirstScript {
 
         textBox.sendKeys("Selenium");
         submitButton.click();
+        Thread.sleep(2000);
 
         WebElement message = driver.findElement(By.id("message"));
-        message.getText();
-
+        System.out.println("Text - "+message.getText());
+       
+        Thread.sleep(2000);
         driver.quit();
     }
 }

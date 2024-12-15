@@ -34,10 +34,10 @@ public class BaseClass {
 
 		webdriverUtils.maximize(driver);
 		webdriverUtils.implicitWait(driver);
-//		driver.get(fileUtils.getPropertyKeyValue("url"));
+		//driver.get(fileUtils.getPropertyKeyValue("url"));
 	}
 
-	@AfterMethod
+	//@AfterMethod
 	public void tearDown() {	
 		webdriverUtils.minimize(driver);
 		if (driver != null) {

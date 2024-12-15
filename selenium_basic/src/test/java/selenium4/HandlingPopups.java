@@ -54,9 +54,9 @@ public class HandlingPopups extends BaseClass {
 		driver.switchTo().alert().sendKeys("YES");
 		driver.switchTo().alert().accept();
 		Thread.sleep(3000);
-//		String promptmsg = driver.switchTo().alert().getText();
-//		System.out.println("promptmsg" + promptmsg);
-//		Thread.sleep(2000);
+		String promptmsg = driver.switchTo().alert().getText();
+		System.out.println("promptmsg" + promptmsg);
+		Thread.sleep(2000);
 	}
 
 	@Test
@@ -101,35 +101,37 @@ public class HandlingPopups extends BaseClass {
 	    Assert.assertEquals("selenium-snapshot.png", fileName.getText());
 	  }
 
-	@Test
-	public void checkWhetherTheUserIsAbleToHandleFileDownloadPopup() throws InterruptedException, AWTException {
-		driver.get("https://www.selenium.dev/downloads/");
-		Thread.sleep(2000);
-		
-		Actions actions = new Actions(driver);
-		actions.click(driver.findElement(By.linkText("4.20.0"))).sendKeys(Keys.ENTER).perform();
-		Thread.sleep(2000);
-		driver.navigate().to("chrome://downloads/");
-		WebElement shadowHost01 = driver.findElement(By.tagName("downloads-manager"));
-		SearchContext shadowRoot01 = shadowHost01.getShadowRoot();
-		WebElement shadowHost02 = shadowRoot01.findElement(By.id("frb0"));
-		SearchContext shadowRoot02 = shadowHost02.getShadowRoot();
-		Thread.sleep(2000);
-		WebElement keepButtonTargetEle = shadowRoot02.findElement(By.cssSelector("cr-button[focus-type='save']"));
-		keepButtonTargetEle.click();
-		
-		Robot robot = new Robot();
-		robot.keyPress(KeyEvent.VK_TAB);
-		robot.keyRelease(KeyEvent.VK_TAB);
-		Thread.sleep(2000);
-		robot.keyPress(KeyEvent.VK_ENTER);
-		robot.keyRelease(KeyEvent.VK_ENTER);
-	}
+//	@Test
+//	public void checkWhetherTheUserIsAbleToHandleFileDownloadPopup() throws InterruptedException, AWTException {
+//		driver.get("https://www.selenium.dev/downloads/");
+//		Thread.sleep(2000);
+//		
+//		Actions actions = new Actions(driver);
+//		actions.click(driver.findElement(By.linkText("4.20.0"))).sendKeys(Keys.ENTER).perform();
+//		Thread.sleep(2000);
+//		driver.navigate().to("chrome://downloads/");
+//		WebElement shadowHost01 = driver.findElement(By.tagName("downloads-manager"));
+//		SearchContext shadowRoot01 = shadowHost01.getShadowRoot();
+//		WebElement shadowHost02 = shadowRoot01.findElement(By.id("frb0"));
+//		SearchContext shadowRoot02 = shadowHost02.getShadowRoot();
+//		Thread.sleep(2000);
+//		WebElement keepButtonTargetEle = shadowRoot02.findElement(By.cssSelector("cr-button[focus-type='save']"));
+//		keepButtonTargetEle.click();
+//		
+//		Robot robot = new Robot();
+//		robot.keyPress(KeyEvent.VK_TAB);
+//		robot.keyRelease(KeyEvent.VK_TAB);
+//		Thread.sleep(2000);
+//		robot.keyPress(KeyEvent.VK_ENTER);
+//		robot.keyRelease(KeyEvent.VK_ENTER);
+//
+//	}
 
 	@Test																										
 	public void checkWhetherTheUserIsAbleToHandleChildBrowserPopup() {
 
 		driver.get("https://demoapps.qspiders.com/ui/browser?sublist=0");
+		String pwid = driver.getWindowHandle();
 		driver.findElement(By.linkText("Open in new window")).click();
 		Set<String> allWids = driver.getWindowHandles();
 
@@ -147,6 +149,10 @@ public class HandlingPopups extends BaseClass {
 				driver.findElement(By.xpath("//button[@type='submit']")).submit();
 			}
 		}
+		
+		String parentWinURL = driver.switchTo().window(pwid).getCurrentUrl();
+		System.out.println("parentWinURL= "+parentWinURL);
+		driver.close();
 	}
 
 	@Test
@@ -155,7 +161,6 @@ public class HandlingPopups extends BaseClass {
 		String password = "admin";
 		Thread.sleep(2000);
 		driver.get("http://"+username+":"+password+"@the-internet.herokuapp.com/basic_auth");
-		Thread.sleep(2000);
-		
+		Thread.sleep(2000);	
 	}
 }

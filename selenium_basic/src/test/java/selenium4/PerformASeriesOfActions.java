@@ -25,9 +25,15 @@ public class PerformASeriesOfActions extends BaseClass {
 			Actions actions = new Actions(driver);
 			// Below line sends some text to field by converting it to upper case, then
 			// double click the text so that it will select all, then do right click
-			actions.moveToElement(ele).click().pause(2000).keyDown(ele, Keys.SHIFT).pause(2000).sendKeys("Rohit")
-					.keyUp(ele, Keys.SHIFT).pause(2000).doubleClick(ele).pause(2000).contextClick(ele).build()
-					.perform();
+			actions.moveToElement(ele)
+			.click()
+			.keyDown(ele, Keys.SHIFT)
+			.sendKeys("Rohit")
+			.keyUp(ele, Keys.SHIFT)
+			.doubleClick(ele)
+			.contextClick(ele)
+			//.build()
+			.perform();
 		}
 
 		catch (Exception e) {

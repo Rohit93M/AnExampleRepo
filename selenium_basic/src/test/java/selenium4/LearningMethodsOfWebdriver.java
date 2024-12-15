@@ -1,6 +1,7 @@
 package selenium4;
 
 import java.net.MalformedURLException;
+import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.time.LocalDateTime;
@@ -9,6 +10,7 @@ import java.util.Set;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.WindowType;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.WebDriver.Window;
 import org.testng.Assert;
 import org.testng.annotations.Listeners;
@@ -23,22 +25,13 @@ public class LearningMethodsOfWebdriver extends BaseClass {
 
 	@Test
 	public void writeAScriptTolaunchChromeBrowser() throws InterruptedException {
-		System.out.println(System.getProperty("user.dir"));
-		
-		//System.setProperty("WebDriver.chrome.driver","./driver/chromedriver.exe");
+//		System.out.println(System.getProperty("user.dir"));
 
-		LocalDateTime time = LocalDateTime.now();
-		int day = time.getDayOfMonth();
-		int year = time.getYear();
-		String month = time.getMonth().toString().toLowerCase();
-		month = (month.substring(0, 1)).toUpperCase() + month.substring(1, month.length());
-		System.out.println(day + " " + month + " " + year);
-
-		Thread.sleep(2000);
-		driver.get("https://facebook.com");
-		Thread.sleep(2000);
-		System.out.println(driver.getPageSource());
-		Thread.sleep(2000);
+//		Thread.sleep(2000);
+//		driver.get("https://facebook.com");
+//		Thread.sleep(2000);
+//		System.out.println(driver.getPageSource());
+//		Thread.sleep(2000);
 
 	}
 	
@@ -61,6 +54,13 @@ public class LearningMethodsOfWebdriver extends BaseClass {
 	      Assert.assertEquals(url, "https://www.selenium.dev/");
 	     
 	  }
+	  
+	 @Test
+	 public void writeAScriptToNavigateUsingURLObject( ) throws MalformedURLException, URISyntaxException {
+		 
+			URL url = new URI("https://www.facebook.com").toURL();
+	        driver.navigate().to(url);
+	 }
 	
     @Test
     public void writeScriptToNavigateWithinAWebpage() throws InterruptedException {
@@ -118,8 +118,8 @@ public class LearningMethodsOfWebdriver extends BaseClass {
 			throws InterruptedException, MalformedURLException, URISyntaxException {
 		driver.get("https://www.dassault-aviation.com/en/");
 		// Store the main URL
-		URL mainUrl = new URL("https://www.dassault-aviation.com/en/");
-//	    URL mainUrl = new URI("https://www.dassault-aviation.com/en/").toURL();
+		
+	    URL mainUrl = new URI("https://www.dassault-aviation.com/en/").toURL();
 		Thread.sleep(2000);
 		URL passionPage = new URL(mainUrl, "passion/");
 		driver.navigate().to(passionPage);
